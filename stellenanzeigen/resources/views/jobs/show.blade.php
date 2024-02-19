@@ -6,9 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>All Jobs</h1>
-    @foreach ($jobs as $job)
-        <p>{{$job->title}}</p>
-    @endforeach
+    <button><a href="{{ url('/jobs') }}">Back to all Jobs</a></button>
+    <h1>{{$job->title}}</h1>
+    <h2>{{$job->company}}</h2>
+    <h3>{{$job->location}}</h3>
+    <p>{{$job->salary}}€</p>
 </body>
 </html>
