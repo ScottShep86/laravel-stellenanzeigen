@@ -18,8 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
-Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
-Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
-Route::post('/jobs/create', [JobController::class, 'store'])->name('jobs.store');
+Route::prefix('jobs')->group(function () {
+    Route::get('/', [JobController::class, 'index'])->name('jobs.index');
+    Route::get('/create', [JobController::class, 'create'])->name('jobs.create');
+    Route::post('/create', [JobController::class, 'store'])->name('jobs.store');
+    Route::get('/{job}', [JobController::class, 'show'])->name('jobs.show');
+});
 
