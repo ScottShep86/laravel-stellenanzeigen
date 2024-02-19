@@ -12,7 +12,11 @@
     <h4>{{$company->category}}</h4>
     <p>{{$company->address}}, {{$company->plz}} {{$company->city}}</p>
     <p>{{$company->phone}} / {{$company->email}}</p>
-    <p></p>
+    <ul>
+        @foreach ($company->jobs as $job)
+            <li>{{$job->title}} - {{$job->location}} - Salary: {{$job->salary}}</li>
+        @endforeach
+    </ul>
     @endforeach
     <a href="{{ route('companies.create') }}">Add New Company</a>
 </body>
