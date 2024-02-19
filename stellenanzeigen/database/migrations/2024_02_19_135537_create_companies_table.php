@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->string('category');
             $table->string('address');
+            $table->string('plz');
+            $table->string('city');
             $table->string('website');
             $table->string('phone');
             $table->string('email');

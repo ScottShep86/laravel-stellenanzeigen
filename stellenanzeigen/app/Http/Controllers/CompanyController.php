@@ -13,4 +13,14 @@ class CompanyController extends Controller
     {
         return view('companies.index', ['companies' => Company::all()]);
     }
+    // CREATE a company
+    public function create(): View
+    {
+        return view('companies.create');
+    }
+    public function store(Request $request)
+    {
+        Company::create($request->all());
+        return redirect()->route('companies.index')->with('success', ' - you have created a new Company');
+    }
 }

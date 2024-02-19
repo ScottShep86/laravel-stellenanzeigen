@@ -11,7 +11,7 @@
         <form action='{{route('jobs.store')}}' method='post'>
             @csrf
             <label for="title">Job Title: <input type="text" id='title' name='title'></label>
-            <label for="description">Job Description: <input type="textarea" id='description' name='description'></label>
+            <label for="description">Job Description: </label><input type="textarea" id='description' name='description'>
             <label for="category">Category: <input type="text" id='category' name='category'></label>
             <label for="company">Company: <input type="text" id='company' name='company'></label>
             <label for="location">Location: <input type="text" id='location' name='location'></label>

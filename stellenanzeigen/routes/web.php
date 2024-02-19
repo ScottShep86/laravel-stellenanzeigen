@@ -26,4 +26,8 @@ Route::prefix('jobs')->group(function () {
     Route::get('/{job}', [JobController::class, 'show'])->name('jobs.show');
 });
 
-Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+Route::prefix('companies')->group(function () {
+    Route::get('/', [CompanyController::class, 'index'])->name('companies.index');
+    Route::get('/create', [CompanyController::class, 'create'])->name('companies.create');
+    Route::post('/create', [CompanyController::class, 'store'])->name('companies.store');
+});

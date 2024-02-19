@@ -8,8 +8,12 @@
 <body>
     <h1>All Companies</h1>
     @foreach ($companies as $company)
-    <a href="{{ route('jobs.show', ['job' => $job->id]) }}"><h3>{{$job->title}}</h3></a>
+    <h3>{{$company->name}}</h3>
+    <h4>{{$company->category}}</h4>
+    <p>{{$company->address}}, {{$company->plz}} {{$company->city}}</p>
+    <p>{{$company->phone}} / {{$company->email}}</p>
+    <p></p>
     @endforeach
-    <a href="{{ route('jobs.create') }}">Add New Job</a>
+    <a href="{{ route('companies.create') }}">Add New Company</a>
 </body>
 </html>
