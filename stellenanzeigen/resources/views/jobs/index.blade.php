@@ -9,7 +9,6 @@
     <h1>All Jobs</h1>
     @foreach ($jobs as $job)
     <a href="{{ route('jobs.show', ['job' => $job->id]) }}"><h3>{{$job->title}}</h3></a>
-    
     @endforeach
     <a href="{{ route('jobs.create') }}">Add New Job</a>
 </body>
