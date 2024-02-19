@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,4 @@ Route::prefix('jobs')->group(function () {
     Route::get('/{job}', [JobController::class, 'show'])->name('jobs.show');
 });
 
+Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
