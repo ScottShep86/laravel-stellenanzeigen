@@ -44,27 +44,23 @@ class JobController extends Controller
         $jobLocation = $validatedData['location'];
         $jobSalary = $validatedData['salary'];
 
-        // Check if the company exists
+    // CHECK: does if the company exists. If yes then retrieve the company ID and link the job to that company
         $company = Company::where('name', $companyName)->first();
 
         if ($company) {
-            // Retrieve the company ID
             $companyId = $company->id;
 
-            // Create the job and associate it with the company
             $job = new Job();
             $job->title = $jobTitle;
             $job->description = $jobDescription;
             $job->category = $jobCategory;
-            $job->company_id = $companyId; // Associate the job with the existing company
+            $job->company_id = $companyId;
             $job->location = $jobLocation;
             $job->salary = $jobSalary;
             $job->save();
 
-            // Job created successfully
             return redirect()->route('jobs.index')->with('success', 'Job created successfully!');
         } else {
-            // Company does not exist
             return redirect()->back()->with('error', 'Company does not exist.');
         }
     }
