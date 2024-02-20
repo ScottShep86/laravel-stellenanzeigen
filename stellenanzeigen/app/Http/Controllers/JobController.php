@@ -65,8 +65,6 @@ class JobController extends Controller
             return redirect()->route('jobs.index')->with('success', 'Job created successfully!');
         } else {
             // Company does not exist
-            // You can choose to handle this case according to your application logic
-            // For example, redirect back with an error message
             return redirect()->back()->with('error', 'Company does not exist.');
         }
     }

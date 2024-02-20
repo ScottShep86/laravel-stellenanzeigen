@@ -14,7 +14,7 @@
     <p>{{$company->phone}} / {{$company->email}}</p>
     <ul>
         @foreach ($company->jobs as $job)
-            <li>{{$job->title}} - {{$job->location}} - Salary: {{$job->salary}}</li>
+            <li>{{$job->title}} - {{$job->location}} - Salary: {{ number_format($job->salary, 0, ',', '.') }}€</li>
         @endforeach
     </ul>
     @endforeach
