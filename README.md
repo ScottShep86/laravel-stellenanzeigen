@@ -1,6 +1,4 @@
-<p align="center">
-    <img src="./public/careerhub-logo.png" alt="CareerHub Logo" style="height: 80px;">
-</p>
+# CAREERHUB
 
 # Job Board Application
 
