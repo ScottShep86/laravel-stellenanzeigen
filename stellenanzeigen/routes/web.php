@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +20,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
 Route::prefix('jobs')->group(function () {
     Route::get('/', [JobController::class, 'index'])->name('jobs.index');
     Route::get('/create', [JobController::class, 'create'])->name('jobs.create');
@@ -33,11 +44,4 @@ Route::prefix('companies')->group(function () {
     Route::post('/create', [CompanyController::class, 'store'])->name('companies.store');
 });
 
-Route::get('/signup', function () {
-    return view('auth.signup');
-});
-Route::post('/signup', [AuthController::class, 'register'])->name('register');
-Route::get('/login', function () {
-    return view('auth.login');
-});
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+require __DIR__.'/auth.php';

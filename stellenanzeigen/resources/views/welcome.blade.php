@@ -14,7 +14,7 @@
 <body class="antialiased">
     <h1>STELLENANZEIGEN</h1>
     <button><a href="{{ url('/login') }}">LOGIN</a></button>
-    <button><a href="{{ url('/signup') }}">SIGNUP</a></button>
+    <button><a href="{{ url('/register') }}">REGISTER</a></button>
 
     <h3><a href="{{ url('/jobs') }}">All Jobs</a></h3>
     <h3><a href="{{ url('/companies') }}">All Companies</a></h3>

@@ -6,13 +6,15 @@ use App\Models\Company;
 use App\Models\Job;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
     //  GET all Jobs
-    public function index():View 
+    public function index()
     {
-        return view('jobs.index', ['jobs' => Job::all()]);
+        $jobs = Job::all();
+        return view('jobs.index', compact('jobs'));
     }
     // GET a specific job
     public function show(Job $job): View
