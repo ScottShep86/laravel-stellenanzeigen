@@ -16,19 +16,25 @@
 
                         @if($company)
                             <h1>{{ $company->name }}</h1>
-                            <p>{{ $company->city }}</p>
-                            <a href="{{ route('jobs.create') }}">Add New Job</a>
+                            <h3>{{ $company->city }}</h3>
+                            <button class="custom-color-two hover:bg-red-500 text-white font-bold py-2 px-4 rounded"><a href="{{ route('jobs.create') }}">Add New Job</a></button>
+                            <h4>Available Jobs</h4>
                             <ul>
                                 @foreach ($company->jobs as $job)
                                     <li>{{$job->title}} - {{$job->location}} - Salary: {{ number_format($job->salary, 0, ',', '.') }}€</li>
+                                    <form action="{{ route('jobs.destroy', $job) }}" method="post" >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
+                                    </form>
                                 @endforeach
                             </ul>
                             <!-- Display other company information as needed -->
                         @else
                             <a href="{{ route('companies.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Company Information</a>
                         @endif
-                    @else
-                        {{ __("You're logged in!") }}
+                        @else
+                        <h1>Hello {{ auth()->user()->name }}</h1>
                     @endif
                 </div>
             </div>

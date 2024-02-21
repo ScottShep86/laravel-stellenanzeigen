@@ -8,20 +8,25 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h1>All Companies</h1>
-    @foreach ($companies as $company)
-    <h3>{{$company->name}}</h3>
-    <h4>{{$company->category}}</h4>
-    <p>{{$company->address}}, {{$company->plz}} {{$company->city}}</p>
-    <p>{{$company->phone}} / {{$company->email}}</p>
-    <ul>
-        @foreach ($company->jobs as $job)
-            <li>{{$job->title}} - {{$job->location}} - Salary: {{ number_format($job->salary, 0, ',', '.') }}€</li>
-        @endforeach
-    </ul>
-    @endforeach
-    <a href="{{ route('companies.create') }}">Add New Company</a>
+                <div class="p-6 text-gray-900 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <h1 class="col-span-full">All Companies</h1>
+                    @foreach ($companies as $company)
+                        <div class="border p-4 rounded-lg">
+                            <h3 class="font-bold">{{ $company->name }}</h3>
+                            <p>{{ $company->address }}</p>
+                            <p>{{ $company->plz }} {{ $company->city }}</p>
+                            <p>{{ $company->phone }}</p>
+                            <p>{{ $company->email }}</p>
+                            <ul>
+                                @foreach ($company->jobs as $job)
+                                    <li>
+                                        <a href="{{ route('jobs.show', ['job' => $job->id]) }}" class="text-blue-600 hover:underline">{{ $job->title }}</a>
+                                        - {{ $job->location }} - Salary: {{ number_format($job->salary, 0, ',', '.') }}€
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

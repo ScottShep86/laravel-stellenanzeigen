@@ -13,14 +13,25 @@ class JobController extends Controller
     //  GET all Jobs
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = Job::orderBy('created_at', 'desc')->get();
         return view('jobs.index', compact('jobs'));
     }
+
     // GET a specific job
-    public function show(Job $job): View
-    {
-        return view('jobs.show', ['job' => $job]);
+    public function show(Job $job)
+{
+    // Check if the job has a company associated with it
+    if ($job->company_id) {
+        // Retrieve the company by its ID
+        $company = Company::findOrFail($job->company_id);
+
+        // Pass the company details to the view
+        return view('jobs.show', ['job' => $job, 'company' => $company]);
     }
+
+    // If no company is associated with the job, pass null as the company
+    return view('jobs.show', ['job' => $job, 'company' => null]);
+}
     // CREATE a job
     public function create(): View
     {
@@ -61,9 +72,18 @@ class JobController extends Controller
             $job->salary = $jobSalary;
             $job->save();
 
-            return redirect()->route('jobs.index')->with('success', 'Job created successfully!');
+            return redirect()->route('dashboard')->with('success', 'Job created successfully!');
         } else {
             return redirect()->back()->with('error', 'Company does not exist.');
         }
     }
+    // DELETE a job
+    public function destroy(Job $job)
+{
+    // Delete the job
+    $job->delete();
+
+    // Redirect back with success message
+    return redirect()->back()->with('success', 'Job deleted successfully');
+}
 }

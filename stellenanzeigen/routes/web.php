@@ -36,6 +36,8 @@ Route::prefix('jobs')->group(function () {
     Route::get('/create', [JobController::class, 'create'])->name('jobs.create');
     Route::post('/create', [JobController::class, 'store'])->name('jobs.store');
     Route::get('/{job}', [JobController::class, 'show'])->name('jobs.show');
+    Route::post('/{job}', [JobController::class, 'apply'])->name('jobs.apply');
+    Route::delete('/{job}', [JobController::class, 'destroy'])->name('jobs.destroy');
 });
 
 Route::prefix('companies')->group(function () {

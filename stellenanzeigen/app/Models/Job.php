@@ -13,7 +13,7 @@ class Job extends Model
         'title',
         'description',
         'category',
-        'company',
+        'company_id',
         'location',
         'salary'
     ];
@@ -23,3 +23,4 @@ class Job extends Model
         return $this->belongsTo(Company::class);
     }
 }
+

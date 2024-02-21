@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('category');
-            $table->string('company')->nullable();
             $table->string('location');
             $table->integer('salary');
         });
